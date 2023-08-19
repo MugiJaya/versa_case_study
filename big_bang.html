@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Big Bang</title>
+</head>
+<body>
+
+    <button onclick="downloadOutput()">Download JSON File</button>
+
+    <script>
+        var data = [];
+
+        for (var num = 1; num <= 100; num++) 
+        {
+            if (num % 3 == 0 && num % 5 == 0) 
+            {
+                data.push("BIGBANG");
+            }
+            else if (num % 3 == 0) 
+            {
+                data.push("BIG");
+            } 
+            else if (num % 5 == 0) 
+            {
+                data.push("BANG");
+            }
+            else 
+            {
+                data.push(num.toString());
+            }
+        }
+
+        var output = JSON.stringify(data);
+
+        function download(content, filename, contentType)
+        {
+            var a = document.createElement("a");
+            var blob = new Blob([content], { type: contentType });
+            a.href = URL.createObjectURL(blob);
+            a.download = filename;
+            a.click();
+        }
+
+        function downloadOutput()
+        {
+            download(output, 'output.json', 'application/json');
+        }
+    </script>
+
+</body>
+</html>
